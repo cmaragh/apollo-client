@@ -18,10 +18,10 @@ const LINK_DATA = gql`
 `;
 
 const CREATE_LINK = gql`
-  mutation createUser($name: String!, $email: String!, $password: String!) {
-    createUser(name: $name, email: $email, password: $password) {
-      name
-      email
+  mutation createUser($url: String!, $slug: String!) {
+    createLink(url: $url, slug: $slug) {
+      url
+      slug
     }
   }
 `;
@@ -29,7 +29,10 @@ const CREATE_LINK = gql`
 export default function App() {
   const [url, setUrl] = useState("");
   const [slug, setSlug] = useState("");
+  const [linkArray, setLinkArray] = useState([]);
+
   const { data } = useQuery(LINK_DATA);
+  const [createLink, { linkData }] = useMutation(CREATE_LINK);
 
   const urlChangeHandler = (e) => {
     setUrl(e.target.value);
@@ -38,6 +41,11 @@ export default function App() {
 
   const slugChangeHandler = (e) => {
     setSlug(e.target.value);
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    createLink({ variables: { url, slug } });
   };
 
   return (
