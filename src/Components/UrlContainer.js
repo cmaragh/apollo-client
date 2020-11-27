@@ -31,12 +31,16 @@ const UrlContainer = (props) => {
             type="text"
             id="url"
             placeholder="Make your links shorter"
+            value={props.url}
+            onChange={props.urlChangeHandler}
           />
           <input
             style={{ textAlign: "center", margin: "0 1em 1em 1em" }}
             type="text"
             id="slug"
             placeholder="Custom slug"
+            value={props.url}
+            onChange={props.slugChangeHandler}
           />
           <Button className={classes.btn}>Shorten URL</Button>
           <p style={{ color: "white" }}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 import NavbarSmall from "./Components/NavbarSmall";
@@ -27,18 +27,34 @@ const CREATE_LINK = gql`
 `;
 
 export default function App() {
+  const [url, setUrl] = useState("");
+  const [slug, setSlug] = useState("");
   const { data } = useQuery(LINK_DATA);
+
+  const urlChangeHandler = (e) => {
+    setUrl(e.target.value);
+    console.log(url);
+  };
+
+  const slugChangeHandler = (e) => {
+    setSlug(e.target.value);
+  };
 
   return (
     <div className="App">
       <NavbarSmall />
       <MainContainer />
-      <UrlContainer />
+      <UrlContainer
+        url={url}
+        slug={slug}
+        urlChangeHandler={urlChangeHandler}
+        slugChangeHandler={slugChangeHandler}
+      />
       <TermsContainer />
       {typeof data === "undefined" ? (
         <h2>Loading links</h2>
       ) : (
-        data.map((link) => {
+        data.allLinks.map((link) => {
           return <h2>{link.url}</h2>;
         })
       )}
