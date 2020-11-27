@@ -29,7 +29,14 @@ const UrlContainer = (props) => {
           <input
             style={{ textAlign: "center", margin: "1em" }}
             type="text"
+            id="url"
             placeholder="Make your links shorter"
+          />
+          <input
+            style={{ textAlign: "center", margin: "0 1em 1em 1em" }}
+            type="text"
+            id="slug"
+            placeholder="Custom slug"
           />
           <Button className={classes.btn}>Shorten URL</Button>
           <p style={{ color: "white" }}>
