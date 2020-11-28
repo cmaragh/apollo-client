@@ -18,7 +18,7 @@ const UrlContainer = (props) => {
 
   return (
     <div className="url-container">
-      <form>
+      <form onSubmit={props.onSubmitHandler}>
         <div
           style={{
             display: "flex",
@@ -39,10 +39,12 @@ const UrlContainer = (props) => {
             type="text"
             id="slug"
             placeholder="Custom slug"
-            value={props.url}
+            value={props.slug}
             onChange={props.slugChangeHandler}
           />
-          <Button className={classes.btn}>Shorten URL</Button>
+          <Button type="submit" className={classes.btn}>
+            Shorten URL
+          </Button>
           <p style={{ color: "white" }}>
             By clicking shorten, you agree to Rebrandly's Terms of Use and
             Privacy Policy

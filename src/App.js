@@ -36,7 +36,6 @@ export default function App() {
 
   const urlChangeHandler = (e) => {
     setUrl(e.target.value);
-    console.log(url);
   };
 
   const slugChangeHandler = (e) => {
@@ -57,13 +56,18 @@ export default function App() {
         slug={slug}
         urlChangeHandler={urlChangeHandler}
         slugChangeHandler={slugChangeHandler}
+        onSubmitHandler={onSubmitHandler}
       />
       <TermsContainer />
       {typeof data === "undefined" ? (
         <h2>Loading links</h2>
       ) : (
         data.allLinks.map((link) => {
-          return <h2>{link.url}</h2>;
+          return (
+            <p>
+              {link.url} -> {link.slug}
+            </p>
+          );
         })
       )}
     </div>
